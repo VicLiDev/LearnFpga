@@ -62,7 +62,7 @@ sim() {
     iverilog -o "${OUT_DIR}/sim_wave" "${OUT_DIR}/auto_tb.v" \
         "${PRJ_DIR}/02_full_adder.v" "${PRJ_DIR}/03_ripple_carry_adder.v" 2>&1
     if [ $? -ne 0 ]; then echo "❌ 波形编译失败"; exit 1; fi
-    vvp "${OUT_DIR}/sim_wave"
+    cd "${OUT_DIR}" && vvp sim_wave && cd - > /dev/null
     echo "✅ 仿真完成. 波形: ${VCD_FILE}"
 }
 
