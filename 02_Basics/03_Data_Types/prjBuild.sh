@@ -1,9 +1,10 @@
 #!/bin/bash
 # prjBuild.sh — 编译并运行本目录下的 Verilog Demo
-# 用法: ./prjBuild.sh [run|build|clean]
+# 用法: ./prjBuild.sh [run|build|wave|clean]
 
 PRJ_DIR=$(cd "$(dirname "$0")" && pwd)
 OUT_DIR="${PRJ_DIR}/out"
+VCD_FILE="${OUT_DIR}/sim.vcd"
 V_FILES=$(ls "${PRJ_DIR}"/*.v 2>/dev/null)
 mkdir -p "${OUT_DIR}"
 
@@ -22,14 +23,51 @@ compile() {
     return $FAIL
 }
 
-run() {
-    compile
-    echo ""; echo "本目录为纯 RTL 模块, 无 Testbench"
+auto_tb() {
+    cat > "${OUT_DIR}/auto_tb.v" << TBEOF
+\`timescale 1ns / 1ps
+module auto_tb;
+    reg clk = 0, rst_n = 0;
+    reg [7:0] wire_in = 8'hA5, reg_in = 8'h3C;
+    wire [7:0] wire_out;
+    reg  [7:0] reg_out;
+    always #5 clk = ~clk;
+    always @(posedge clk) if (rst_n) reg_out <= reg_in;
+    initial begin
+        \$dumpfile("${VCD_FILE}");
+        \$dumpvars(0, auto_tb);
+        #10; rst_n = 1;
+        #200;
+        \$display("Simulation done.");
+        \$finish;
+    end
+endmodule
+TBEOF
 }
 
+sim() {
+    echo "========================================"
+    echo " Auto-generating TB for waveform..."
+    echo "========================================"
+    auto_tb
+    iverilog -o "${OUT_DIR}/sim_wave" "${OUT_DIR}/auto_tb.v" "${PRJ_DIR}/01_data_types.v" 2>&1
+    if [ $? -ne 0 ]; then echo "❌ 波形编译失败"; exit 1; fi
+    vvp "${OUT_DIR}/sim_wave"
+    echo "✅ 仿真完成. 波形: ${VCD_FILE}"
+}
+
+wave() {
+    sim
+    echo ""
+    echo "Opening GTKWave..."
+    gtkwave "${VCD_FILE}" &
+}
 clean() { rm -rf "${OUT_DIR}"; echo "✅ 已清理 ${OUT_DIR}"; }
 
 case "${1:-run}" in
-    run)   run ;; build) compile ;; clean) clean ;;
-    *)     echo "用法: $0 [run|build|clean]"; exit 1 ;;
+    run)   compile; echo "本目录为纯 RTL 模块, 无 Testbench" ;;
+    build) compile ;;
+    wave)  wave ;;
+    clean) clean ;;
+    *)     echo "用法: $0 [run|build|wave|clean]"; exit 1 ;;
 esac

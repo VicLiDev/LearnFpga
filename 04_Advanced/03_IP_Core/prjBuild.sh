@@ -4,6 +4,7 @@
 # 用法: ./prjBuild.sh [info|clean]
 
 PRJ_DIR=$(cd "$(dirname "$0")" && pwd)
+OUT_DIR="${PRJ_DIR}/out"
 
 info() {
     echo "========================================"
@@ -25,13 +26,18 @@ info() {
     echo ""
 }
 
-clean() {
-    rm -rf "${PRJ_DIR}/out"
-    echo "✅ 已清理"
+wave() {
+    echo "⚠️  IP 核示例需要 Vivado 环境, 不支持 gtkwave 波形查看"
+    echo "   请使用 Vivado 的仿真功能查看波形"
+    info
 }
 
+clean() { rm -rf "${OUT_DIR}"; echo "✅ 已清理"; }
+
 case "${1:-info}" in
-    info)  info ;;
+    run)   info ;;
+    build) info ;;
+    wave)  wave ;;
     clean) clean ;;
-    *)     echo "用法: $0 [info|clean]"; exit 1 ;;
+    *)     echo "用法: $0 [run|build|wave|clean]"; exit 1 ;;
 esac

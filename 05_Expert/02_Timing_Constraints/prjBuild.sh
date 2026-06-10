@@ -4,6 +4,7 @@
 # 用法: ./prjBuild.sh [info|clean]
 
 PRJ_DIR=$(cd "$(dirname "$0")" && pwd)
+OUT_DIR="${PRJ_DIR}/out"
 
 info() {
     echo "========================================"
@@ -31,9 +32,15 @@ info() {
     echo ""
 }
 
-clean() { rm -rf "${PRJ_DIR}/out"; echo "✅ 已清理"; }
+wave() {
+    echo "⚠️  XDC 约束文件无法生成仿真波形"
+    echo "   波形查看请在 Vivado 中使用 Simulation 功能"
+    info
+}
+
+clean() { rm -rf "${OUT_DIR}"; echo "✅ 已清理"; }
 
 case "${1:-info}" in
-    info)  info ;; clean) clean ;;
-    *)     echo "用法: $0 [info|clean]"; exit 1 ;;
+    run)   info ;; build) info ;; wave) wave ;; clean) clean ;;
+    *)     echo "用法: $0 [run|build|wave|clean]"; exit 1 ;;
 esac
