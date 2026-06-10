@@ -25,7 +25,7 @@ sim() {
     echo "========================================"
     echo " Running Simulation"
     echo "========================================"
-    vvp "${OUT_DIR}/sim"
+    cd "${OUT_DIR}" && vvp sim && cd - > /dev/null
     echo "✅ 仿真完成. 波形: ${VCD_FILE}"
 }
 

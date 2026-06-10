@@ -10,25 +10,26 @@ mkdir -p "${OUT_DIR}"
 
 # 自动生成简易 TB (选择第一个非 _tb 的 .v 文件)
 auto_tb() {
-    local rtl_file=$(ls "${PRJ_DIR}"/[0-9]*_*.v 2>/dev/null | head -1)
-    if [ -z "$rtl_file" ]; then echo "❌ 未找到 RTL 文件"; exit 1; fi
-    local rtl_name=$(basename "$rtl_file" .v)
-    cat > "${OUT_DIR}/auto_tb.v" << EOF
+    cat > "${OUT_DIR}/auto_tb.v" << TBEOF
 \`timescale 1ns / 1ps
 module auto_tb;
-    reg clk = 0;
-    always #5 clk = ~clk;
-    ${rtl_name} #() u_dut (/* 请根据端口补充连接 */);
+    reg a = 0, b = 0;
+    wire y_and, y_or, y_not, y_xor, y_nand, y_nor;
+    basic_gates u_dut (.a(a),.b(b),.y_and(y_and),.y_or(y_or),.y_not(y_not),.y_xor(y_xor),.y_nand(y_nand),.y_nor(y_nor));
     initial begin
-        \$dumpfile("${VCD_FILE}");
+        \$dumpfile("sim.vcd");
         \$dumpvars(0, auto_tb);
-        #1000;
-        \$display("Simulation done. Open waveform with: gtkwave ${VCD_FILE}");
+        a=0; b=0; #10;
+        a=0; b=1; #10;
+        a=1; b=0; #10;
+        a=1; b=1; #10;
+        \$display("a=%b b=%b: and=%b or=%b not=%b xor=%b nand=%b nor=%b",
+                   a, b, y_and, y_or, y_not, y_xor, y_nand, y_nor);
+        \$display("Simulation done.");
         \$finish;
     end
 endmodule
-EOF
-    echo "  ℹ️  自动生成 TB: ${rtl_name} (端口未连接, 仅生成时钟波形)"
+TBEOF
 }
 
 compile() {
@@ -53,7 +54,7 @@ sim() {
     auto_tb
     iverilog -o "${OUT_DIR}/sim_wave" "${OUT_DIR}/auto_tb.v" ${V_FILES} 2>&1
     if [ $? -ne 0 ]; then echo "❌ 波形编译失败"; exit 1; fi
-    vvp "${OUT_DIR}/sim_wave" 2>/dev/null
+    cd "${OUT_DIR}" && vvp sim_wave && cd - > /dev/null
     echo "✅ 仿真完成. 波形: ${VCD_FILE}"
 }
 
