@@ -1,0 +1,5 @@
+out/
+*.vcd
+*.out
+*.o
+.omc/
