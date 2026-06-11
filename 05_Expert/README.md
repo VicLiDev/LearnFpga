@@ -1,36 +1,36 @@
-# 05_Expert — Engineering Excellence
+# 05_Expert — 精通篇
 
-The critical step from "can write code" to "can ship products". This section covers verification, timing constraints, and design optimization.
+从"能写代码"到"能交付产品"的关键一步。本章节涵盖验证、时序约束和设计优化。
 
-## Chapters
+## 章节列表
 
-| # | Chapter | Key Points | Demo |
-|---|---------|-----------|------|
-| 01 | [Verification_Methodology](01_Verification_Methodology/) | Testbench, self-checking, coverage | Basic TB / Self-Checking TB / Coverage |
-| 02 | [Timing_Constraints](02_Timing_Constraints/) | SDC/XDC syntax, clock & I/O constraints | Basic Clock Constraints / IO Constraints |
-| 03 | [Design_Optimization](03_Design_Optimization/) | Pipeline, resource sharing, retiming | Pipelined Adder / Resource Sharing |
+| # | 章节 | 要点 | 示例 |
+|---|------|------|------|
+| 01 | [Verification_Methodology](01_Verification_Methodology/) | 测试激励、自校验、覆盖率 | 基础 TB / 自校验 TB / 覆盖率 |
+| 02 | [Timing_Constraints](02_Timing_Constraints/) | SDC/XDC 语法、时钟与 I/O 约束 | 基础时钟约束 / I/O 约束 |
+| 03 | [Design_Optimization](03_Design_Optimization/) | 流水线、资源共享、重定时 | 流水线加法器 / 资源共享 |
 
-## Why This Matters?
+## 为什么这些很重要？
 
 ```
-Can write code ≠ Works correctly ≠ Meets timing ≠ Can manufacture
+能写代码 ≠ 功能正确 ≠ 满足时序 ≠ 可以量产
 
-Verification  → Ensures functional correctness (70% of bugs from poor verification)
-Constraints   → Ensures timing closure (no constraints = no closure)
-Optimization  → Ensures resource/power/performance targets met
+验证      → 确保功能正确（70% 的 bug 来自验证不足）
+时序约束  → 确保时序收敛（没有约束就无法收敛）
+设计优化  → 确保资源/功耗/性能指标达标
 ```
 
-## Engineer vs Hobbyist
+## 工程师 vs 爱好者
 
-| Dimension | Hobbyist | Engineer |
-|-----------|----------|----------|
-| Workflow | Write → Flash | Write → Simulate → Verify → Flash |
-| Timing | Ignored | 100% timing closure |
-| Design | "It works" | Resource/power/performance balanced |
-| Documentation | None | Design doc + constraints doc + verification report |
+| 维度 | 爱好者 | 工程师 |
+|------|--------|--------|
+| 工作流 | 写代码 → 烧录 | 写代码 → 仿真 → 验证 → 烧录 |
+| 时序 | 忽略 | 100% 时序收敛 |
+| 设计 | "能跑就行" | 资源/功耗/性能平衡 |
+| 文档 | 无 | 设计文档 + 约束文档 + 验证报告 |
 
-## After This Section
+## 学完本章节后
 
-✅ Write professional Testbenches for functional verification
-✅ Understand and write timing constraint files
-✅ Apply pipelining and resource sharing to optimize designs
+✅ 能编写专业的 Testbench 进行功能验证
+✅ 能理解并编写时序约束文件
+✅ 能运用流水线和资源共享优化设计

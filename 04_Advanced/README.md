@@ -1,29 +1,29 @@
-# 04_Advanced — Professional Applications
+# 04_Advanced — 进阶篇
 
-This section focuses on typical FPGA application domains: digital signal processing, image processing, and IP core usage.
+本章节聚焦 FPGA 的典型应用领域：数字信号处理、图像处理和 IP 核使用。
 
-## Chapters
+## 章节列表
 
-| # | Chapter | Key Points | Demo |
-|---|---------|-----------|------|
-| 01 | [DSP_Design](01_DSP_Design/) | FIR filter, FFT butterfly, multiplier | 4-tap FIR / Butterfly Unit |
-| 02 | [Image_Processing](02_Image_Processing/) | Grayscale, edge detection, frame buffer | Grayscale Convert / Sobel Edge |
-| 03 | [IP_Core](03_IP_Core/) | BRAM / FIFO / PLL IP configuration | IP Core integration examples |
+| # | 章节 | 要点 | 示例 |
+|---|------|------|------|
+| 01 | [DSP_Design](01_DSP_Design/) | FIR 滤波器、FFT 蝶形运算、乘法器 | 4 阶 FIR / 蝶形运算单元 |
+| 02 | [Image_Processing](02_Image_Processing/) | 灰度转换、边缘检测、帧缓冲 | 灰度转换 / Sobel 边缘检测 |
+| 03 | [IP_Core](03_IP_Core/) | BRAM / FIFO / PLL IP 核配置 | IP 核集成示例 |
 
-## DSP on FPGA Advantage
+## FPGA 做 DSP 的优势
 
 ```
-Traditional DSP Chip              FPGA
-  Single instruction stream        Massive parallel execution
-  Sequential processing            Custom data paths
-  Fixed compute units              Flexible topology
-  Bottlenecked by clock            Breaks through clock limits
+传统 DSP 芯片                    FPGA
+  单指令流执行                    大规模并行执行
+  串行处理                        自定义数据通路
+  固定计算单元                    灵活的拓扑结构
+  受限于时钟频率                  突破时钟频率瓶颈
 
-Applications: Radar, Communications, Audio, Motor Control
+应用场景: 雷达、通信、音频处理、电机控制
 ```
 
-## After This Section
+## 学完本章节后
 
-✅ Implement FIR filters and FFT on FPGA
-✅ Design basic image processing pipelines
-✅ Confidently use vendor IP cores
+✅ 能在 FPGA 上实现 FIR 滤波器和 FFT
+✅ 能设计基本的图像处理流水线
+✅ 能熟练使用厂商 IP 核

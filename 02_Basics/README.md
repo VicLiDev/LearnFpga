@@ -1,32 +1,32 @@
-# 02_Basics — Digital Logic Fundamentals
+# 02_Basics — 基础篇
 
-This section is the foundation of all FPGA design. Everything you build later relies on combinational and sequential logic.
+本章节是所有 FPGA 设计的基础。后续所有设计都依赖于组合逻辑和时序逻辑。
 
-## Chapters
+## 章节列表
 
-| # | Chapter | Key Points | Demo |
-|---|---------|-----------|------|
-| 01 | [Combinational_Logic](01_Combinational_Logic/) | Encoder, MUX, ALU, adder | 4:1 MUX / Simple ALU / Ripple Carry Adder |
-| 02 | [Sequential_Logic](02_Sequential_Logic/) | D flip-flop, counter, shift register | N-bit Counter / Shift Register |
-| 03 | [Data_Types](03_Data_Types/) | wire/reg, signed numbers, arithmetic | Data Type Demo / Signed Multiplication |
-| 04 | [Modular_Design](04_Modular_Design/) | Instantiation, parameters, hierarchy | Full Adder / 4-bit Adder |
+| # | 章节 | 要点 | 示例 |
+|---|------|------|------|
+| 01 | [Combinational_Logic](01_Combinational_Logic/) | 编码器、MUX、ALU、加法器 | 4 选 1 MUX / 简易 ALU / 行波进位加法器 |
+| 02 | [Sequential_Logic](02_Sequential_Logic/) | D 触发器、计数器、移位寄存器 | N 位计数器 / 移位寄存器 |
+| 03 | [Data_Types](03_Data_Types/) | wire/reg、有符号数、算术运算 | 数据类型演示 / 有符号乘法 |
+| 04 | [Modular_Design](04_Modular_Design/) | 模块例化、参数化、层次化设计 | 全加器 / 4 位加法器 |
 
-## Key Concepts
+## 核心概念
 
-### Combinational vs Sequential Logic
+### 组合逻辑 vs 时序逻辑
 
 ```
-Combinational Logic                    Sequential Logic
-  Input ──→ [Logic] ──→ Output        Input ──→ [Logic] ──→ [FF] ──→ Output
-    │          No memory                │           │           │
-    └── Output depends only on input    └── Clocked, has memory
+组合逻辑                        时序逻辑
+  输入 ──→ [逻辑] ──→ 输出       输入 ──→ [逻辑] ──→ [FF] ──→ 输出
+    │          无记忆               │           │           │
+    └── 输出仅取决于当前输入        └── 有时钟，有记忆
 ```
 
-- **Combinational**: Output depends only on current input. No clock, no state.
-- **Sequential**: Output depends on current input + history. Requires clock.
+- **组合逻辑**：输出仅取决于当前输入。无时钟、无状态。
+- **时序逻辑**：输出取决于当前输入 + 历史状态。需要时钟。
 
-## After This Section
+## 学完本章节后
 
-✅ Design any combinational logic circuit
-✅ Understand clock, reset, and registers
-✅ Write parameterized, reusable modules
+✅ 能设计任意组合逻辑电路
+✅ 理解时钟、复位和寄存器
+✅ 能编写参数化、可复用的模块

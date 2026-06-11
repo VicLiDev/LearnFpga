@@ -1,27 +1,27 @@
-# 01_Introduction — Getting Started
+# 01_Introduction — 入门篇
 
-This section is for absolute beginners. Goals:
-- Understand what FPGA is and what it can do
-- Set up the complete development environment
-- Learn basic Verilog HDL syntax
-- Complete your first FPGA project (LED blink)
+本章节面向零基础初学者。学习目标：
+- 了解什么是 FPGA，它能做什么
+- 搭建完整的开发环境
+- 学习 Verilog HDL 基本语法
+- 完成第一个 FPGA 项目（LED 闪烁）
 
-## Chapters
+## 章节列表
 
-| # | Chapter | Key Points | Demo |
-|---|---------|-----------|------|
-| 01 | [What_Is_FPGA](01_What_Is_FPGA/) | Architecture, LUT/FF/routing, vs CPU vs ASIC | LED Blink |
-| 02 | [Toolchain_Setup](02_Toolchain_Setup/) | Vivado/Quartus install & project creation | — |
-| 03 | [HDL_Basics](03_HDL_Basics/) | Basic gates, MUX, decoder in Verilog | Gates / MUX / Decoder |
+| #   | 章节                                   | 要点                                       | 示例                  |
+|-----|----------------------------------------|--------------------------------------------|-----------------------|
+| 01  | [What_Is_FPGA](01_What_Is_FPGA/)       | 架构原理、LUT/FF/布线、FPGA vs CPU vs ASIC | LED 闪烁              |
+| 02  | [Toolchain_Setup](02_Toolchain_Setup/) | Vivado/Quartus 安装与工程创建              | —                     |
+| 03  | [HDL_Basics](03_HDL_Basics/)           | 基本门电路、多路选择器、译码器             | 门电路 / MUX / 译码器 |
 
-## Prerequisites
+## 前置要求
 
-- Basic digital logic concepts (0/1, AND/OR/NOT gates)
-- Ability to install software on your computer
-- Patience 💪
+- 基本数字逻辑概念（0/1、与或非门）
+- 能够在电脑上安装软件
+- 耐心 💪
 
-## After This Section
+## 学完本章节后
 
-✅ Explain the difference between FPGA and CPU
-✅ Install Vivado or Quartus independently
-✅ Write simple Verilog and verify in simulation
+✅ 能解释 FPGA 和 CPU 的区别
+✅ 能独立安装 Vivado 或 Quartus
+✅ 能编写简单的 Verilog 并在仿真中验证
